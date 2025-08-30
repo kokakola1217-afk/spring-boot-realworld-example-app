@@ -80,9 +80,9 @@ public class ArticleApiTest extends TestWithCurrentUser {
   @Test
   public void should_404_if_article_not_found() throws Exception {
     when(articleQueryService.findBySlug(anyString(), any())).thenReturn(Optional.empty());
-    RestAssuredMockMvc.when().get("/articles/not-exists").then().statusCode(404);
+    RestAssuredMockMvc.when().get("/articles/not-exists").then().statusCode(404).body("errors.body[0]", equalTo("article not found"));
   }
-
+  
   @Test
   public void should_update_article_content_success() throws Exception {
     List<String> tagList = Arrays.asList("java", "spring", "jpg");
