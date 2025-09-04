@@ -28,3 +28,4 @@ public class TagsQueryService {
     return tags;
   }
 }
+}
